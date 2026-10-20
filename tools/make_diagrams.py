@@ -23,16 +23,16 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent / "docs" / "figures"
 
 THEMES = {
-    "light": dict(
-        bg="#F4F6FA", panel="#FFFFFF", ink="#1B2430", muted="#5F6C7D",
-        hair="#D8DEE8", violet="#7A6BA8", blue="#4C7CAE", teal="#4E9A92",
-        amber="#C08A5A", soft="#E9EDF3",
-    ),
-    "dark": dict(
-        bg="#0E131A", panel="#161D27", ink="#DDE5EE", muted="#8795A6",
-        hair="#2A3340", violet="#A99CD6", blue="#87AEDA", teal="#82C0B8",
-        amber="#D6A478", soft="#1B2430",
-    ),
+    "light": {
+        "bg": "#F4F6FA", "panel": "#FFFFFF", "ink": "#1B2430", "muted": "#5F6C7D",
+        "hair": "#D8DEE8", "violet": "#7A6BA8", "blue": "#4C7CAE", "teal": "#4E9A92",
+        "amber": "#C08A5A", "soft": "#E9EDF3",
+    },
+    "dark": {
+        "bg": "#0E131A", "panel": "#161D27", "ink": "#DDE5EE", "muted": "#8795A6",
+        "hair": "#2A3340", "violet": "#A99CD6", "blue": "#87AEDA", "teal": "#82C0B8",
+        "amber": "#D6A478", "soft": "#1B2430",
+    },
 }
 
 FONT = ("font-family=\"Archivo, 'Segoe UI', Helvetica, Arial, sans-serif\"")

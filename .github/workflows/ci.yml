@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  figures:
+    # This repository is a written case study, so for a while it had no CI on the
+    # grounds that there is nothing to build and nothing to test. That was not
+    # quite true: the eight SVGs under docs/figures are *generated* by
+    # tools/make_diagrams.py, and nothing checked that the files committed next
+    # to the prose are the ones that script still produces. A figure can drift
+    # from its generator silently, and then the generator is no longer the
+    # source of the figure, it is a second opinion about it.
+    #
+    # So the check is the same one the profile repository makes: regenerate, and
+    # fail if the working tree moved. The generator needs no third-party
+    # package, only html and pathlib from the standard library, which is why
+    # there is no requirements file to install.
+    name: Figures match their generator
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Pinned, and the same version the other repositories in this portfolio
+      # pin, so "lint passes" means the same thing across all of them. A
+      # floating ruff turns a new rule in an upstream release into an apparent
+      # failure of code that has not changed.
+      - name: Install ruff
+        run: python -m pip install ruff==0.16.1
+
+      - name: Lint
+        run: ruff check tools/
+
+      - name: Regenerate the figures
+        run: python tools/make_diagrams.py
+
+      # --exit-code is the assertion. If regenerating changed any byte, the
+      # committed figure was stale and this fails with the diff in the log.
+      - name: The committed figures are the generated ones
+        run: git diff --exit-code -- docs/figures
