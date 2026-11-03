@@ -5,6 +5,16 @@
 
 # Release tracking at AUDI AG, a case study
 
+<!-- project-story:start -->
+<p align="center"><img src="docs/assets/architecture-animated.svg" alt="Animated architecture diagram of this project" width="100%"></p>
+
+| Problem | Why it mattered | Result |
+|---|---|---|
+| About 600 rows and 130 columns, searched by eye. | People needed one record, again and again. | **4 frames** replaced scanning the sheet, and other departments adopted it |
+
+[See it animated on mzquadri.de](https://mzquadri.de/work/audi-release-tracking)
+<!-- project-story:end -->
+
 A development release sheet of roughly **600 rows and 130 or more columns**, and
 a question people asked of it many times a day: what is the status of this one
 component. The answer was in the sheet. Finding it meant scanning the grid by
